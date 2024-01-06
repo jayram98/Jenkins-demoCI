@@ -16,8 +16,8 @@ pipeline {
             steps {
                 // Build your Python code
                 //sh 'pip install -r requirements.txt'  // Install any required dependencies
-                sh 'apt-get update && apt-get install -y python'
-                sh 'python -v' 
+                //sh 'apt-get update && apt-get install -y python'
+                //sh 'python -v' 
                 sh 'python setup.py build'
             }
         }

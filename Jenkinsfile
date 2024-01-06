@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Checkout the source code from your repository
                 git 'https://github.com/jayram98/python-helloworld.git'
-                 git branch: 'main'
+                 git branch: 'master'
               
             }
         }

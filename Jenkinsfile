@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        registry = "your-docker-registry"
+        registry = "jay899"
         image = "hello-world-app"
     }
 

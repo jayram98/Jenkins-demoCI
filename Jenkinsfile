@@ -1,36 +1,36 @@
 pipeline {
     agent any
-    
-    environment {
-        registry = "your-docker-registry"
-        image = "hello-world-app"
-    }
 
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                // Checkout the source code from your repository
+                git 'https://github.com/jayram98/python-helloworld.git'
             }
         }
 
-        stage('Build and Push Docker Image') {
+        stage('Build') {
             steps {
-                script {
-                    // Install Docker (if not already installed)
-                    sh 'apt-get update && apt-get install -y docker.io'
+                // Build your Python code
+                sh 'pip install -r requirements.txt'  // Install any required dependencies
+                sh 'python setup.py build'
+            }
+        }
 
-                    // Docker build and push
-                    docker.build("$registry/$image", "-f Dockerfile .")
-                    docker.withRegistry('https://your-docker-registry', 'docker-credentials-id') {
-                        docker.image("$registry/$image").push()
-                    }
+        stage('Create Docker Image') {
+            steps {
+                // Build the Docker image
+                sh 'docker build -t your_username/your_python_project:latest .'
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                // Push the Docker image to Docker Hub
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                    sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                 }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                // You can add test steps here if needed
+                sh 'docker push your_username/your_python_project:latest'
             }
         }
     }

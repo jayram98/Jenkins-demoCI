@@ -16,14 +16,11 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    // Install Python (adjust the version as needed)
-                    sh 'apt-get update && apt-get install -y python3'
-
-                    // Build and run the Hello World program
-                    sh 'python3 hello_world.py'
+                    // Install Docker (if not already installed)
+                    sh 'apt-get update && apt-get install -y docker.io'
 
                     // Docker build and push
-                    docker.build("$registry/$image")
+                    docker.build("$registry/$image", "-f Dockerfile .")
                     docker.withRegistry('https://your-docker-registry', 'docker-credentials-id') {
                         docker.image("$registry/$image").push()
                     }

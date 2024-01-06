@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your Python code
-                sh 'pip install -r requirements.txt'  // Install any required dependencies
+                //sh 'pip install -r requirements.txt'  // Install any required dependencies
                 sh 'python setup.py build'
             }
         }

@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from your repository
-                git 'https://github.com/jayram98/python-helloworld.git'
+                url 'https://github.com/jayram98/python-helloworld.git'
                  git branch: 'master'
               
             }

@@ -18,7 +18,7 @@ pipeline {
                 //sh 'pip install -r requirements.txt'  // Install any required dependencies
                 //sh 'apt-get update && apt-get install -y python'
                 //sh 'python -v' 
-                sh 'python setup.py build'
+                sh 'python3 setup.py build'
             }
         }
 

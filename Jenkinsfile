@@ -27,6 +27,7 @@ pipeline {
                 // Build the Docker image
                 sh 'whoami'
                 sh 'docker build -t your_username/your_python_project:latest .'
+                sh 'cat dockerfile'
             }
         }
 

@@ -26,7 +26,7 @@ pipeline {
             steps {
                 // Build the Docker image
                 sh 'whoami'
-                sh 'docker build -t your_username/your_python_project:latest .'
+                sh 'docker build -t jay899/hello-world:latest .'
               
             }
         }

@@ -37,7 +37,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
                     sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
                 }
-                sh 'docker push jay899/your_python_project:latest'
+                sh 'docker push jay899/hello-world:latest'
             }
         }
     }
